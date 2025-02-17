@@ -180,17 +180,21 @@ def edit_todo_action(id):
   else:
     flash('Todo not found or unauthorized')
   return redirect(url_for('todos_page'))
-if __name__ == "__main__":
 
-  @app.route('/deleteTodo/<id>', methods=["GET"])
-  @jwt_required()
-  def delete_todo_action(id):
-    res = current_user.delete_todo(id)
-    if res == None:
-      flash('Invalid id or unauthorized')
-    else:
-      flash('Todo Deleted')
-    return redirect(url_for('todos_page'))
+@app.route('/deleteTodo/<id>', methods=["GET"])
+@jwt_required()
+def delete_todo_action(id):
+  res = current_user.delete_todo(id)
+  if res == None:
+    flash('Invalid id or unauthorized')
+  else:
+    flash('Todo Deleted')
+  return redirect(url_for('todos_page'))
 
-  
+
+
+
+
+
+if __name__ == "__main__": 
   app.run(host='0.0.0.0', port=81)
