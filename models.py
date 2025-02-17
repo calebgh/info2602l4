@@ -103,7 +103,10 @@ class RegularUser(User):
   __mapper_args__ = {
       'polymorphic_identity': 'regular user',
   }
-
+  #make todos reverse order
+ # def get_todos(self):
+  #  return sorted(self.todos, key=lambda todo: todo.id, reverse=True)
+  
   def add_todo(self, text):
     new_todo = Todo(text=text)
     new_todo.user_id = self.id
